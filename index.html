@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Personal Finance Dashboard</title>
+    <meta charset="UTF-8">
+    <link href="styles.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <h1>Personal Finance Dashboard</h1>
+    
+    <div class="Income">
+        <h2>Income</h2>
+        <div class="row">
+            <input class="category" value="Hirsch und Eber salary">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <div class="row">
+            <input class="category" value="Hirsch und Eber tips">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <div class="row">
+            <input class="category" value="Instaff">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <button class="add-button">Add row</button>
+    </div>
+    
+    <div class="Expenses">
+        <h2>Expenses</h2>
+        <div class="row">
+            <input class="category" value="Rent">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <div class="row">
+            <input class="category" value="Groceries">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <div class="row">
+            <input class="category" value="Supplements">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <div class="row">
+            <input class="category" value="Hygiene">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <div class="row">
+            <input class="category" value="Going out">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <!-- Weitere leere Reihen für zukünftige Einträge -->
+        <div class="row">
+            <input class="category" placeholder="Category">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <div class="row">
+            <input class="category" placeholder="Category">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <button class="add-button">Add row</button>
+    </div>
+    
+    <div class="Debts">
+        <h2>Debts</h2>
+        <div class="row">
+            <input class="category" placeholder="Category">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <div class="row">
+            <input class="category" placeholder="Category">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <button class="add-button">Add row</button>
+    </div>
+    
+    <div class="Savings">
+        <h2>Savings</h2>
+        <div class="row">
+            <input class="category" value="Nest-egg">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <div class="row">
+            <input class="category" value="Poker Bankroll">
+            <input class="amount" placeholder="Amount">
+            <button class="delete-button">Delete row</button>
+        </div>
+        <button class="add-button">Add row</button>
+    </div>
+    <script>
+function addRow(event) {
+    // Das Eltern-Element (div) herausfinden, das den Add-Button enthält
+    const parentDiv = event.target.closest('div');
+
+    // Eine neue Zeile (row) erstellen
+    const newRow = document.createElement('div');
+    newRow.className = 'row';
+
+    // Erstes Eingabefeld (category) erstellen
+    const categoryInput = document.createElement('input');
+    categoryInput.className = 'category';
+    categoryInput.placeholder = 'Category';
+
+    // Zweites Eingabefeld (amount) erstellen
+    const amountInput = document.createElement('input');
+    amountInput.className = 'amount';
+    amountInput.placeholder = 'Amount';
+
+    // Delete-Button erstellen
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'delete-button';
+    deleteButton.textContent = 'Delete row';
+
+    // Löschen-Funktion für den Delete-Button
+    deleteButton.onclick = function () {
+        newRow.remove();
+    };
+
+    // Die Eingabefelder und den Delete-Button zur neuen Reihe hinzufügen
+    newRow.appendChild(categoryInput);
+    newRow.appendChild(amountInput);
+    newRow.appendChild(deleteButton);
+
+    // Die neue Reihe vor dem Add-Button einfügen
+    parentDiv.insertBefore(newRow, event.target);
+}
+
+// Funktion zum Initialisieren der Add-Buttons
+function initAddButtons() {
+    const addButtons = document.querySelectorAll('.add-button');
+    addButtons.forEach(button => {
+        button.addEventListener('click', addRow);
+    });
+}
+
+// Funktion zum Initialisieren der Delete-Buttons
+function initDeleteButtons() {
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+            const row = event.target.closest('.row');
+            row.remove();
+        });
+    });
+}
+
+// Initialisierung ausführen, sobald das Dokument geladen ist
+document.addEventListener('DOMContentLoaded', function () {
+    initAddButtons();
+    initDeleteButtons();
+});
+
+    </script>
+</body>
+</html>

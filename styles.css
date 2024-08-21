@@ -1,0 +1,12 @@
+
+.row {
+    display: flex;
+    margin-bottom: 10px;
+}
+.category {
+    width: 150px;
+    margin-right: 10px;
+}
+.amount {
+    width: 100px;
+}
